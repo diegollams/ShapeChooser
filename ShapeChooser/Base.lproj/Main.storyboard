@@ -23,13 +23,13 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gdU-Ye-6DZ">
                                 <rect key="frame" x="0.0" y="480" width="600" height="120"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square" translatesAutoresizingMaskIntoConstraints="NO" id="C9F-Jk-91k">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square0" translatesAutoresizingMaskIntoConstraints="NO" id="C9F-Jk-91k">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="120"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hex" translatesAutoresizingMaskIntoConstraints="NO" id="oCe-RV-EOb">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hex0" translatesAutoresizingMaskIntoConstraints="NO" id="oCe-RV-EOb">
                                         <rect key="frame" x="200" y="0.0" width="200" height="120"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="triangle" translatesAutoresizingMaskIntoConstraints="NO" id="Mpj-BK-v5C">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="triangle0" translatesAutoresizingMaskIntoConstraints="NO" id="Mpj-BK-v5C">
                                         <rect key="frame" x="400" y="0.0" width="200" height="120"/>
                                     </imageView>
                                 </subviews>
@@ -119,7 +119,7 @@
                                     </imageView>
                                 </subviews>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hex" translatesAutoresizingMaskIntoConstraints="NO" id="hji-G1-9HM">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hex0" translatesAutoresizingMaskIntoConstraints="NO" id="hji-G1-9HM">
                                 <rect key="frame" x="180" y="153" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="Nu4-pO-fog"/>
@@ -141,6 +141,11 @@
                             <constraint firstItem="hji-G1-9HM" firstAttribute="centerX" secondItem="KBT-gK-1iJ" secondAttribute="centerX" id="vm2-zH-i3v"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="hexImageView" destination="oCe-RV-EOb" id="nd0-w1-kuP"/>
+                        <outlet property="squareImageView" destination="C9F-Jk-91k" id="jzy-9A-llF"/>
+                        <outlet property="triangleImageView" destination="Mpj-BK-v5C" id="7bb-9q-iyx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -151,8 +156,8 @@
         <image name="bg" width="976" height="1495"/>
         <image name="frame" width="512" height="512"/>
         <image name="heart" width="1560" height="1420"/>
-        <image name="hex" width="500" height="333"/>
-        <image name="square" width="502" height="333"/>
-        <image name="triangle" width="501" height="340"/>
+        <image name="hex0" width="500" height="333"/>
+        <image name="square0" width="502" height="333"/>
+        <image name="triangle0" width="501" height="340"/>
     </resources>
 </document>
