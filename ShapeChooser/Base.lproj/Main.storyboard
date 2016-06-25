@@ -20,29 +20,6 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="HPi-BN-drA">
                                 <rect key="frame" x="-188" y="-447" width="976" height="1495"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gdU-Ye-6DZ">
-                                <rect key="frame" x="0.0" y="480" width="600" height="120"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square0" translatesAutoresizingMaskIntoConstraints="NO" id="C9F-Jk-91k">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="120"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hex0" translatesAutoresizingMaskIntoConstraints="NO" id="oCe-RV-EOb">
-                                        <rect key="frame" x="200" y="0.0" width="200" height="120"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="triangle0" translatesAutoresizingMaskIntoConstraints="NO" id="Mpj-BK-v5C">
-                                        <rect key="frame" x="400" y="0.0" width="200" height="120"/>
-                                    </imageView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="oCe-RV-EOb" firstAttribute="centerX" secondItem="gdU-Ye-6DZ" secondAttribute="centerX" id="a0y-cM-lwn"/>
-                                    <constraint firstAttribute="height" constant="120" id="bGC-yz-sGg"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="a0y-cM-lwn"/>
-                                    </mask>
-                                </variation>
-                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KBT-gK-1iJ">
                                 <rect key="frame" x="150" y="45" width="300" height="100"/>
                                 <subviews>
@@ -120,12 +97,38 @@
                                 </subviews>
                             </stackView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hex0" translatesAutoresizingMaskIntoConstraints="NO" id="hji-G1-9HM">
-                                <rect key="frame" x="180" y="153" width="240" height="128"/>
+                                <rect key="frame" x="225" y="153" width="150" height="150"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="Nu4-pO-fog"/>
-                                    <constraint firstAttribute="width" constant="240" id="VHW-z8-35T"/>
+                                    <constraint firstAttribute="height" constant="150" id="Nu4-pO-fog"/>
+                                    <constraint firstAttribute="width" constant="150" id="VHW-z8-35T"/>
                                 </constraints>
                             </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gdU-Ye-6DZ">
+                                <rect key="frame" x="0.0" y="480" width="600" height="120"/>
+                                <subviews>
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square0" translatesAutoresizingMaskIntoConstraints="NO" id="C9F-Jk-91k" customClass="DragImage" customModule="ShapeChooser" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="120"/>
+                                    </imageView>
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hex0" translatesAutoresizingMaskIntoConstraints="NO" id="oCe-RV-EOb" customClass="DragImage" customModule="ShapeChooser" customModuleProvider="target">
+                                        <rect key="frame" x="200" y="0.0" width="200" height="120"/>
+                                    </imageView>
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="triangle0" translatesAutoresizingMaskIntoConstraints="NO" id="Mpj-BK-v5C" customClass="DragImage" customModule="ShapeChooser" customModuleProvider="target">
+                                        <rect key="frame" x="400" y="0.0" width="200" height="120"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="oCe-RV-EOb" firstAttribute="centerX" secondItem="gdU-Ye-6DZ" secondAttribute="centerX" id="a0y-cM-lwn"/>
+                                    <constraint firstAttribute="height" constant="120" id="bGC-yz-sGg"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="a0y-cM-lwn"/>
+                                    </mask>
+                                </variation>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -143,6 +146,7 @@
                     </view>
                     <connections>
                         <outlet property="hexImageView" destination="oCe-RV-EOb" id="nd0-w1-kuP"/>
+                        <outlet property="shapeImageView" destination="hji-G1-9HM" id="afz-zQ-x8k"/>
                         <outlet property="squareImageView" destination="C9F-Jk-91k" id="jzy-9A-llF"/>
                         <outlet property="triangleImageView" destination="Mpj-BK-v5C" id="7bb-9q-iyx"/>
                     </connections>

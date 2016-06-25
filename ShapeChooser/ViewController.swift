@@ -9,9 +9,9 @@
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet var hexImageView: UIImageView!
-    @IBOutlet var squareImageView: UIImageView!
-    @IBOutlet var triangleImageView: UIImageView!
+    @IBOutlet var hexImageView: DragImage!
+    @IBOutlet var squareImageView: DragImage!
+    @IBOutlet var triangleImageView: DragImage!
     @IBOutlet var shapeImageView: UIImageView!
     
     let HEX_IMAGE_COUNT = 3
@@ -24,11 +24,20 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        hexImageView.dropTarget = shapeImageView
+        squareImageView.dropTarget = shapeImageView
+        triangleImageView.dropTarget = shapeImageView
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.itemDropped(_:)),name: DragImage.Events.onTargetDrop, object: nil)
+        
         loadAnimationImageView(hexImageView,baseUIImageName: HEX_BASE_NAME,imageCount: HEX_IMAGE_COUNT)
         loadAnimationImageView(squareImageView, baseUIImageName: SQUARE_BASE_NAME, imageCount: SQUARE_IMAGE_COUNT)
         loadAnimationImageView(triangleImageView, baseUIImageName: TRIANGLE_BASE_NAME, imageCount: TRIANGLE_IMAGE_COUNT)
         
-
+    }
+    
+    func itemDropped(notif: NSNotification){
+        print("Drop in place")
     }
     
     func loadAnimationImageView(imageView: UIImageView, baseUIImageName: String, imageCount: Int){
