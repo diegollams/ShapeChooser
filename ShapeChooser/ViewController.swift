@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     @IBOutlet var hexImageView: DragImage!
     @IBOutlet var squareImageView: DragImage!
     @IBOutlet var triangleImageView: DragImage!
-    @IBOutlet var shapeImageView: UIImageView!
+    @IBOutlet var shapeImageCatcher: ImageCatcher!
     
     let HEX_IMAGE_COUNT = 3
     let HEX_BASE_NAME = "hex"
@@ -24,11 +24,18 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        hexImageView.dropTarget = shapeImageView
-        squareImageView.dropTarget = shapeImageView
-        triangleImageView.dropTarget = shapeImageView
+        hexImageView.dropTarget = shapeImageCatcher
+        squareImageView.dropTarget = shapeImageCatcher
+        triangleImageView.dropTarget = shapeImageCatcher
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.itemDropped(_:)),name: DragImage.Events.onTargetDrop, object: nil)
+        var imagesDictionary = [String: UIImage]()
+        imagesDictionary[SQUARE_BASE_NAME] = UIImage(named: SQUARE_BASE_NAME + "0.png" )
+        imagesDictionary[HEX_BASE_NAME] = UIImage(named: HEX_BASE_NAME + "0.png" )
+        imagesDictionary[TRIANGLE_BASE_NAME] = UIImage(named: TRIANGLE_BASE_NAME + "0.png" )
+        shapeImageCatcher.images = imagesDictionary
+        
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.shapeDropped(_:)),name: DragImage.Events.onTargetDrop, object: nil)
         
         loadAnimationImageView(hexImageView,baseUIImageName: HEX_BASE_NAME,imageCount: HEX_IMAGE_COUNT)
         loadAnimationImageView(squareImageView, baseUIImageName: SQUARE_BASE_NAME, imageCount: SQUARE_IMAGE_COUNT)
@@ -36,8 +43,22 @@ class ViewController: UIViewController {
         
     }
     
-    func itemDropped(notif: NSNotification){
-        print("Drop in place")
+    func shapeDropped(notif: NSNotification){
+        let userInfor = notif.userInfo
+        if let view = userInfor!["view"] as! UIView?{
+            if view == hexImageView{
+                evalShapeDrop(shapeImageCatcher.keyIsCurrent(HEX_BASE_NAME))
+            }else if view == squareImageView{
+                evalShapeDrop(shapeImageCatcher.keyIsCurrent(SQUARE_BASE_NAME))
+            }else if view == triangleImageView{
+                evalShapeDrop(shapeImageCatcher.keyIsCurrent(TRIANGLE_BASE_NAME))
+            }
+        }
+        
+    }
+    
+    func evalShapeDrop(dropSuccess: Bool){
+        
     }
     
     func loadAnimationImageView(imageView: UIImageView, baseUIImageName: String, imageCount: Int){
@@ -54,9 +75,5 @@ class ViewController: UIViewController {
         imageView.startAnimating()
     }
     
-    
-
-
-
 }
 

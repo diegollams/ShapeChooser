@@ -96,7 +96,7 @@
                                     </imageView>
                                 </subviews>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hex0" translatesAutoresizingMaskIntoConstraints="NO" id="hji-G1-9HM">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hex0" translatesAutoresizingMaskIntoConstraints="NO" id="hji-G1-9HM" customClass="ImageCatcher" customModule="ShapeChooser" customModuleProvider="target">
                                 <rect key="frame" x="225" y="153" width="150" height="150"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <bool key="isElement" value="YES"/>
@@ -146,7 +146,7 @@
                     </view>
                     <connections>
                         <outlet property="hexImageView" destination="oCe-RV-EOb" id="nd0-w1-kuP"/>
-                        <outlet property="shapeImageView" destination="hji-G1-9HM" id="afz-zQ-x8k"/>
+                        <outlet property="shapeImageCatcher" destination="hji-G1-9HM" id="L42-x9-c38"/>
                         <outlet property="squareImageView" destination="C9F-Jk-91k" id="jzy-9A-llF"/>
                         <outlet property="triangleImageView" destination="Mpj-BK-v5C" id="7bb-9q-iyx"/>
                     </connections>
