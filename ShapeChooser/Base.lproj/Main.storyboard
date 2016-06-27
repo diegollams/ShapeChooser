@@ -129,26 +129,71 @@
                                     </mask>
                                 </variation>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="a4n-e8-ss6">
+                                <rect key="frame" x="150" y="207" width="50" height="56"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Score:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeH-4c-Jp9">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uzp-Cw-NxE">
+                                        <rect key="frame" x="0.0" y="21" width="50" height="35"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JfO-cF-caW">
+                                <rect key="frame" x="408" y="207" width="49" height="56"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timer:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TiI-K3-qV6">
+                                        <rect key="frame" x="0.0" y="0.0" width="49" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7k-kE-xbh">
+                                        <rect key="frame" x="0.0" y="21" width="49" height="35"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="oFs-xF-U1s" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9Nc-bg-MuP"/>
+                            <constraint firstItem="hji-G1-9HM" firstAttribute="leading" secondItem="a4n-e8-ss6" secondAttribute="trailing" constant="25" id="HEa-Sq-Z80"/>
                             <constraint firstAttribute="bottom" secondItem="gdU-Ye-6DZ" secondAttribute="bottom" id="JPh-5h-ncd"/>
+                            <constraint firstItem="a4n-e8-ss6" firstAttribute="centerY" secondItem="hji-G1-9HM" secondAttribute="centerY" id="JpX-lT-e5J"/>
                             <constraint firstItem="hji-G1-9HM" firstAttribute="top" secondItem="KBT-gK-1iJ" secondAttribute="bottom" constant="8" id="MN1-nG-ZNe"/>
                             <constraint firstItem="oFs-xF-U1s" firstAttribute="centerY" secondItem="KBT-gK-1iJ" secondAttribute="centerY" id="Owu-Uz-1WW"/>
+                            <constraint firstItem="JfO-cF-caW" firstAttribute="trailing" secondItem="KBT-gK-1iJ" secondAttribute="trailing" id="TXP-8Q-kcH"/>
                             <constraint firstAttribute="trailing" secondItem="gdU-Ye-6DZ" secondAttribute="trailing" id="Ucx-om-fqO"/>
                             <constraint firstItem="KBT-gK-1iJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Wtu-M1-QqD"/>
                             <constraint firstItem="KBT-gK-1iJ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="25" id="c5F-K7-2aW"/>
+                            <constraint firstItem="a4n-e8-ss6" firstAttribute="leading" secondItem="KBT-gK-1iJ" secondAttribute="leading" id="d8h-g1-OtO"/>
                             <constraint firstItem="oFs-xF-U1s" firstAttribute="centerX" secondItem="KBT-gK-1iJ" secondAttribute="centerX" id="d8m-JH-uz3"/>
+                            <constraint firstItem="JfO-cF-caW" firstAttribute="centerY" secondItem="hji-G1-9HM" secondAttribute="centerY" id="hoF-5X-Ypv"/>
                             <constraint firstItem="gdU-Ye-6DZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="jHO-WS-GYT"/>
                             <constraint firstItem="hji-G1-9HM" firstAttribute="centerX" secondItem="KBT-gK-1iJ" secondAttribute="centerX" id="vm2-zH-i3v"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="HEa-Sq-Z80"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="heart0" destination="Dta-Gi-1Y3" id="897-r9-ZmA"/>
                         <outlet property="heart1" destination="U5D-nf-Spn" id="wQr-55-e3N"/>
                         <outlet property="heart2" destination="oPk-VL-kUW" id="jWb-Cz-bhS"/>
                         <outlet property="hexImageView" destination="oCe-RV-EOb" id="nd0-w1-kuP"/>
+                        <outlet property="scoreLabel" destination="Uzp-Cw-NxE" id="y4E-Nb-Zdq"/>
                         <outlet property="shapeImageCatcher" destination="hji-G1-9HM" id="L42-x9-c38"/>
                         <outlet property="squareImageView" destination="C9F-Jk-91k" id="jzy-9A-llF"/>
                         <outlet property="triangleImageView" destination="Mpj-BK-v5C" id="7bb-9q-iyx"/>

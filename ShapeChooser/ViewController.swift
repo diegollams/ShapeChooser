@@ -13,14 +13,19 @@ class ViewController: UIViewController {
     @IBOutlet var squareImageView: DragImage!
     @IBOutlet var triangleImageView: DragImage!
     @IBOutlet var shapeImageCatcher: ImageCatcher!
-    
+    @IBOutlet var scoreLabel: UILabel!
     @IBOutlet var heart0: UIImageView!
     @IBOutlet var heart1: UIImageView!
     @IBOutlet var heart2: UIImageView!
     
     let initialLives = 3
     var remainingLives = 0
+    let initialScore = 0
+    var score = 0
     
+    
+    
+    let HIGH_SCORE_DEFAULT = "high_score"
     let OPAQUE: CGFloat = 1.0
     let DIM_ALPHA: CGFloat = 0.2
     let HEX_IMAGE_COUNT = 3
@@ -37,6 +42,7 @@ class ViewController: UIViewController {
         
         startGame()
         
+        //set droptarget the imageCatcher
         hexImageView.dropTarget = shapeImageCatcher
         squareImageView.dropTarget = shapeImageCatcher
         triangleImageView.dropTarget = shapeImageCatcher
@@ -54,14 +60,27 @@ class ViewController: UIViewController {
     
     func startGame(){
         remainingLives = initialLives
+        score = initialScore
+        scoreLabel.text = "\(score)"
         shapeImageCatcher.changeRandomImage()
         heart0.alpha = OPAQUE
         heart1.alpha = OPAQUE
         heart2.alpha = OPAQUE
     }
     
+    func getHighScore() -> Int{
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let highScore = defaults.integerForKey(HIGH_SCORE_DEFAULT)
+        if highScore > score{
+            return highScore
+        }else{
+            defaults.setInteger(score, forKey: HIGH_SCORE_DEFAULT)
+            return score
+        }
+    }
+    
     func endGame(){
-        let endGameAlert = UIAlertController(title: END_GAME_TITLE, message: "Score: ", preferredStyle: UIAlertControllerStyle.Alert)
+        let endGameAlert = UIAlertController(title: END_GAME_TITLE, message: "Score: \(score)\r\nHigh Score: \(getHighScore())", preferredStyle: UIAlertControllerStyle.Alert)
         endGameAlert.addAction(UIAlertAction(title: RESTART_GAME, style: .Default, handler: {(action: UIAlertAction!) in
            self.startGame()
         }))
@@ -101,7 +120,8 @@ class ViewController: UIViewController {
     
     func evalShapeDrop(dropSuccess: Bool){
         if dropSuccess{
-            
+            score += 1
+            scoreLabel.text = "\(score)"
         }else{
             substractLife()
         }
