@@ -70,7 +70,7 @@
                                     </imageView>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="48" translatesAutoresizingMaskIntoConstraints="NO" id="oFs-xF-U1s">
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="48" translatesAutoresizingMaskIntoConstraints="NO" id="oFs-xF-U1s">
                                 <rect key="frame" x="177" y="70" width="246" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="Dta-Gi-1Y3">
@@ -145,6 +145,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="heart0" destination="Dta-Gi-1Y3" id="897-r9-ZmA"/>
+                        <outlet property="heart1" destination="U5D-nf-Spn" id="wQr-55-e3N"/>
+                        <outlet property="heart2" destination="oPk-VL-kUW" id="jWb-Cz-bhS"/>
                         <outlet property="hexImageView" destination="oCe-RV-EOb" id="nd0-w1-kuP"/>
                         <outlet property="shapeImageCatcher" destination="hji-G1-9HM" id="L42-x9-c38"/>
                         <outlet property="squareImageView" destination="C9F-Jk-91k" id="jzy-9A-llF"/>

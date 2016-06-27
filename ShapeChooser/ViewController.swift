@@ -14,26 +14,35 @@ class ViewController: UIViewController {
     @IBOutlet var triangleImageView: DragImage!
     @IBOutlet var shapeImageCatcher: ImageCatcher!
     
+    @IBOutlet var heart0: UIImageView!
+    @IBOutlet var heart1: UIImageView!
+    @IBOutlet var heart2: UIImageView!
+    
+    let initialLives = 3
+    var remainingLives = 0
+    
+    let OPAQUE: CGFloat = 1.0
+    let DIM_ALPHA: CGFloat = 0.2
     let HEX_IMAGE_COUNT = 3
     let HEX_BASE_NAME = "hex"
     let SQUARE_IMAGE_COUNT = 3
     let SQUARE_BASE_NAME = "square"
     let TRIANGLE_IMAGE_COUNT = 3
     let TRIANGLE_BASE_NAME = "triangle"
+    let END_GAME_TITLE = "Ended Game"
+    let RESTART_GAME = "Restart"
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        startGame()
         
         hexImageView.dropTarget = shapeImageCatcher
         squareImageView.dropTarget = shapeImageCatcher
         triangleImageView.dropTarget = shapeImageCatcher
         
-        var imagesDictionary = [String: UIImage]()
-        imagesDictionary[SQUARE_BASE_NAME] = UIImage(named: SQUARE_BASE_NAME + "0.png" )
-        imagesDictionary[HEX_BASE_NAME] = UIImage(named: HEX_BASE_NAME + "0.png" )
-        imagesDictionary[TRIANGLE_BASE_NAME] = UIImage(named: TRIANGLE_BASE_NAME + "0.png" )
+        let imagesDictionary = [SQUARE_BASE_NAME: UIImage(named: SQUARE_BASE_NAME + "0.png" )!, HEX_BASE_NAME: UIImage(named: HEX_BASE_NAME + "0.png" )!, TRIANGLE_BASE_NAME: UIImage(named: TRIANGLE_BASE_NAME + "0.png" )!]
         shapeImageCatcher.images = imagesDictionary
-        
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.shapeDropped(_:)),name: DragImage.Events.onTargetDrop, object: nil)
         
@@ -41,6 +50,39 @@ class ViewController: UIViewController {
         loadAnimationImageView(squareImageView, baseUIImageName: SQUARE_BASE_NAME, imageCount: SQUARE_IMAGE_COUNT)
         loadAnimationImageView(triangleImageView, baseUIImageName: TRIANGLE_BASE_NAME, imageCount: TRIANGLE_IMAGE_COUNT)
         
+    }
+    
+    func startGame(){
+        remainingLives = initialLives
+        shapeImageCatcher.changeRandomImage()
+        heart0.alpha = OPAQUE
+        heart1.alpha = OPAQUE
+        heart2.alpha = OPAQUE
+    }
+    
+    func endGame(){
+        let endGameAlert = UIAlertController(title: END_GAME_TITLE, message: "Score: ", preferredStyle: UIAlertControllerStyle.Alert)
+        endGameAlert.addAction(UIAlertAction(title: RESTART_GAME, style: .Default, handler: {(action: UIAlertAction!) in
+           self.startGame()
+        }))
+        presentViewController(endGameAlert, animated: true, completion: nil)
+    }
+    
+    func substractLife(){
+        remainingLives -= 1
+        switch remainingLives {
+        case 0:
+            heart0.alpha = DIM_ALPHA
+            endGame()
+            break
+        case 1:
+            heart1.alpha = DIM_ALPHA
+            break
+        case 2:
+            heart2.alpha = DIM_ALPHA
+        default:
+            break
+        }
     }
     
     func shapeDropped(notif: NSNotification){
@@ -58,7 +100,11 @@ class ViewController: UIViewController {
     }
     
     func evalShapeDrop(dropSuccess: Bool){
-        
+        if dropSuccess{
+            
+        }else{
+            substractLife()
+        }
     }
     
     func loadAnimationImageView(imageView: UIImageView, baseUIImageName: String, imageCount: Int){

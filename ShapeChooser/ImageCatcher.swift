@@ -13,13 +13,16 @@ class ImageCatcher: UIImageView{
     private var _imagesDictionary: [String: UIImage]?
     private var _currentImageKey: String?
     
-    internal var images: [String: UIImage]?{
+    internal var images: [String: UIImage]{
         set{
             _imagesDictionary = newValue
             self.changeRandomImage()
         }
         get{
-            return _imagesDictionary
+            if _imagesDictionary != nil{
+                return _imagesDictionary!
+            }
+            return [:]
         }
     }
     
@@ -43,7 +46,7 @@ class ImageCatcher: UIImageView{
         return false
     }
     
-    private func changeRandomImage(){
+    internal func changeRandomImage(){
         if _imagesDictionary != nil{
             let uIntSize =  UInt32(_imagesDictionary!.count)
             let random =  Int(arc4random_uniform(uIntSize))
