@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet var triangleImageView: DragImage!
     @IBOutlet var shapeImageCatcher: ImageCatcher!
     @IBOutlet var scoreLabel: UILabel!
+    @IBOutlet var timerLabel: TimerLabel!
     @IBOutlet var heart0: UIImageView!
     @IBOutlet var heart1: UIImageView!
     @IBOutlet var heart2: UIImageView!
@@ -51,6 +52,7 @@ class ViewController: UIViewController {
         shapeImageCatcher.images = imagesDictionary
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.shapeDropped(_:)),name: DragImage.Events.onTargetDrop, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.timerEnded(_:)), name: TimerLabel.Events.onTimerFinish, object: nil)
         
         loadAnimationImageView(hexImageView,baseUIImageName: HEX_BASE_NAME,imageCount: HEX_IMAGE_COUNT)
         loadAnimationImageView(squareImageView, baseUIImageName: SQUARE_BASE_NAME, imageCount: SQUARE_IMAGE_COUNT)
@@ -66,6 +68,8 @@ class ViewController: UIViewController {
         heart0.alpha = OPAQUE
         heart1.alpha = OPAQUE
         heart2.alpha = OPAQUE
+        timerLabel.startingTime = 5
+        timerLabel.startTimer()
     }
     
     func getHighScore() -> Int{
@@ -80,6 +84,7 @@ class ViewController: UIViewController {
     }
     
     func endGame(){
+        timerLabel.stopTimer()
         let endGameAlert = UIAlertController(title: END_GAME_TITLE, message: "Score: \(score)\r\nHigh Score: \(getHighScore())", preferredStyle: UIAlertControllerStyle.Alert)
         endGameAlert.addAction(UIAlertAction(title: RESTART_GAME, style: .Default, handler: {(action: UIAlertAction!) in
            self.startGame()
@@ -104,6 +109,12 @@ class ViewController: UIViewController {
         }
     }
     
+    func timerEnded(notif: NSNotification){
+        substractLife()
+        timerLabel.restartTimer()
+        
+    }
+    
     func shapeDropped(notif: NSNotification){
         let userInfor = notif.userInfo
         if let view = userInfor!["view"] as! UIView?{
@@ -122,8 +133,10 @@ class ViewController: UIViewController {
         if dropSuccess{
             score += 1
             scoreLabel.text = "\(score)"
+            timerLabel.restartTimer()
         }else{
             substractLife()
+            timerLabel.restartTimer()
         }
     }
     
