@@ -68,6 +68,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6B6528EB1D22D9C50056D5F9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6B054F341D203246003A62DC /* ImageCatcher.swift */,
+				6B054F321D1DDB89003A62DC /* DragImage.swift */,
+				6B054F361D21B4EF003A62DC /* TimerLabel.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		6B6528EC1D22D9F30056D5F9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6B054F3C1D2226C1003A62DC /* miss.mp3 */,
+				6B054F3A1D221427003A62DC /* success.mp3 */,
+				6B054F381D22070C003A62DC /* background.mp3 */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		6BFEAFD51D1C912700BF9BD1 = {
 			isa = PBXGroup;
 			children = (
@@ -89,18 +109,14 @@
 		6BFEAFE01D1C912700BF9BD1 /* ShapeChooser */ = {
 			isa = PBXGroup;
 			children = (
+				6B6528EC1D22D9F30056D5F9 /* Resources */,
+				6B6528EB1D22D9C50056D5F9 /* Views */,
 				6BFEAFE11D1C912700BF9BD1 /* AppDelegate.swift */,
 				6BFEAFE31D1C912700BF9BD1 /* ViewController.swift */,
 				6BFEAFE51D1C912700BF9BD1 /* Main.storyboard */,
 				6BFEAFE81D1C912700BF9BD1 /* Assets.xcassets */,
-				6B054F321D1DDB89003A62DC /* DragImage.swift */,
 				6BFEAFEA1D1C912700BF9BD1 /* LaunchScreen.storyboard */,
 				6BFEAFED1D1C912700BF9BD1 /* Info.plist */,
-				6B054F341D203246003A62DC /* ImageCatcher.swift */,
-				6B054F3C1D2226C1003A62DC /* miss.mp3 */,
-				6B054F3A1D221427003A62DC /* success.mp3 */,
-				6B054F381D22070C003A62DC /* background.mp3 */,
-				6B054F361D21B4EF003A62DC /* TimerLabel.swift */,
 			);
 			path = ShapeChooser;
 			sourceTree = "<group>";

@@ -56,13 +56,13 @@ class TimerLabel: UILabel{
     
     func startTimer(){
         if _startingTime != nil{
+            stopTimer()
             _timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(self.decreeTime), userInfo: nil, repeats: false)
         }
     }
     
     func stopTimer(){
         if _timer != nil{
-            _currentTime = 0
             _timer?.invalidate()
             _timer = nil
         }
