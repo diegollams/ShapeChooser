@@ -62,13 +62,14 @@ class TimerLabel: UILabel{
     
     func stopTimer(){
         if _timer != nil{
-            _timer!.invalidate()
+            _currentTime = 0
+            _timer?.invalidate()
             _timer = nil
         }
         
     }
     func decreeTime(){
-        if _currentTime != nil{
+        if _currentTime != nil && _timer != nil{
             _currentTime! -= 1
             if _currentTime > 0{
                 startTimer()

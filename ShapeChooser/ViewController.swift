@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
     @IBOutlet var hexImageView: DragImage!
@@ -23,7 +24,9 @@ class ViewController: UIViewController {
     var remainingLives = 0
     let initialScore = 0
     var score = 0
-    
+    var musicPlayer: AVAudioPlayer!
+    var successPLayer: AVAudioPlayer!
+    var missPlayer: AVAudioPlayer!
     
     
     let HIGH_SCORE_DEFAULT = "high_score"
@@ -37,11 +40,12 @@ class ViewController: UIViewController {
     let TRIANGLE_BASE_NAME = "triangle"
     let END_GAME_TITLE = "Ended Game"
     let RESTART_GAME = "Restart"
+    let BACKGROUND_FILE_NAME = "background"
+    let SUCCESS_FILE_NAME = "success"
+    let MISS_FILE_NAME = "miss"
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        startGame()
         
         //set droptarget the imageCatcher
         hexImageView.dropTarget = shapeImageCatcher
@@ -51,16 +55,23 @@ class ViewController: UIViewController {
         let imagesDictionary = [SQUARE_BASE_NAME: UIImage(named: SQUARE_BASE_NAME + "0.png" )!, HEX_BASE_NAME: UIImage(named: HEX_BASE_NAME + "0.png" )!, TRIANGLE_BASE_NAME: UIImage(named: TRIANGLE_BASE_NAME + "0.png" )!]
         shapeImageCatcher.images = imagesDictionary
         
+        
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.shapeDropped(_:)),name: DragImage.Events.onTargetDrop, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.timerEnded(_:)), name: TimerLabel.Events.onTimerFinish, object: nil)
         
+        laodAudioPlayers()
         loadAnimationImageView(hexImageView,baseUIImageName: HEX_BASE_NAME,imageCount: HEX_IMAGE_COUNT)
         loadAnimationImageView(squareImageView, baseUIImageName: SQUARE_BASE_NAME, imageCount: SQUARE_IMAGE_COUNT)
         loadAnimationImageView(triangleImageView, baseUIImageName: TRIANGLE_BASE_NAME, imageCount: TRIANGLE_IMAGE_COUNT)
         
+        
+        startGame()
     }
     
+    
     func startGame(){
+        playAudio(musicPlayer)
         remainingLives = initialLives
         score = initialScore
         scoreLabel.text = "\(score)"
@@ -84,7 +95,8 @@ class ViewController: UIViewController {
     }
     
     func endGame(){
-        timerLabel.stopTimer()
+        musicPlayer.stop()
+        
         let endGameAlert = UIAlertController(title: END_GAME_TITLE, message: "Score: \(score)\r\nHigh Score: \(getHighScore())", preferredStyle: UIAlertControllerStyle.Alert)
         endGameAlert.addAction(UIAlertAction(title: RESTART_GAME, style: .Default, handler: {(action: UIAlertAction!) in
            self.startGame()
@@ -92,11 +104,14 @@ class ViewController: UIViewController {
         presentViewController(endGameAlert, animated: true, completion: nil)
     }
     
+    
     func substractLife(){
+        playAudio(missPlayer)
         remainingLives -= 1
         switch remainingLives {
         case 0:
             heart0.alpha = DIM_ALPHA
+            timerLabel.stopTimer()
             endGame()
             break
         case 1:
@@ -107,11 +122,13 @@ class ViewController: UIViewController {
         default:
             break
         }
+        timerLabel.restartTimer()
     }
     
     func timerEnded(notif: NSNotification){
-        substractLife()
-        timerLabel.restartTimer()
+        if remainingLives > 0{
+            substractLife()    
+        }
         
     }
     
@@ -131,12 +148,38 @@ class ViewController: UIViewController {
     
     func evalShapeDrop(dropSuccess: Bool){
         if dropSuccess{
+            playAudio(successPLayer)
+            successPLayer.playing
             score += 1
             scoreLabel.text = "\(score)"
             timerLabel.restartTimer()
+
         }else{
             substractLife()
-            timerLabel.restartTimer()
+        }
+    }
+    
+    func playAudio(audioPlayer: AVAudioPlayer){
+        if audioPlayer.playing{
+            audioPlayer.stop()
+            audioPlayer.currentTime = 0
+        }
+        audioPlayer.play()
+    }
+    
+    func laodAudioPlayers(){
+        do{
+            let musicPath = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(BACKGROUND_FILE_NAME, ofType: "mp3")!)
+            try musicPlayer = AVAudioPlayer(contentsOfURL: musicPath)
+            let successPath = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(SUCCESS_FILE_NAME, ofType: "mp3")!)
+            try successPLayer = AVAudioPlayer(contentsOfURL: successPath)
+            let missPath = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(MISS_FILE_NAME, ofType: "mp3")!)
+            try missPlayer = AVAudioPlayer(contentsOfURL: missPath)
+            
+            successPLayer.prepareToPlay()
+            musicPlayer.prepareToPlay()
+        }catch{
+            
         }
     }
     

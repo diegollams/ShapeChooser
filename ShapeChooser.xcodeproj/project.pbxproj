@@ -10,6 +10,9 @@
 		6B054F331D1DDB89003A62DC /* DragImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B054F321D1DDB89003A62DC /* DragImage.swift */; };
 		6B054F351D203246003A62DC /* ImageCatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B054F341D203246003A62DC /* ImageCatcher.swift */; };
 		6B054F371D21B4EF003A62DC /* TimerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B054F361D21B4EF003A62DC /* TimerLabel.swift */; };
+		6B054F391D22070C003A62DC /* background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B054F381D22070C003A62DC /* background.mp3 */; };
+		6B054F3B1D221427003A62DC /* success.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B054F3A1D221427003A62DC /* success.mp3 */; };
+		6B054F3D1D2226C1003A62DC /* miss.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B054F3C1D2226C1003A62DC /* miss.mp3 */; };
 		6BFEAFE21D1C912700BF9BD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFEAFE11D1C912700BF9BD1 /* AppDelegate.swift */; };
 		6BFEAFE41D1C912700BF9BD1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFEAFE31D1C912700BF9BD1 /* ViewController.swift */; };
 		6BFEAFE71D1C912700BF9BD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BFEAFE51D1C912700BF9BD1 /* Main.storyboard */; };
@@ -32,6 +35,9 @@
 		6B054F321D1DDB89003A62DC /* DragImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragImage.swift; sourceTree = "<group>"; };
 		6B054F341D203246003A62DC /* ImageCatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCatcher.swift; sourceTree = "<group>"; };
 		6B054F361D21B4EF003A62DC /* TimerLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerLabel.swift; sourceTree = "<group>"; };
+		6B054F381D22070C003A62DC /* background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = background.mp3; path = ../../../../Downloads/background.mp3; sourceTree = "<group>"; };
+		6B054F3A1D221427003A62DC /* success.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = success.mp3; path = ../../../../Downloads/success.mp3; sourceTree = "<group>"; };
+		6B054F3C1D2226C1003A62DC /* miss.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = miss.mp3; path = ../../../../Downloads/miss.mp3; sourceTree = "<group>"; };
 		6BFEAFDE1D1C912700BF9BD1 /* ShapeChooser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShapeChooser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BFEAFE11D1C912700BF9BD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6BFEAFE31D1C912700BF9BD1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +97,9 @@
 				6BFEAFEA1D1C912700BF9BD1 /* LaunchScreen.storyboard */,
 				6BFEAFED1D1C912700BF9BD1 /* Info.plist */,
 				6B054F341D203246003A62DC /* ImageCatcher.swift */,
+				6B054F3C1D2226C1003A62DC /* miss.mp3 */,
+				6B054F3A1D221427003A62DC /* success.mp3 */,
+				6B054F381D22070C003A62DC /* background.mp3 */,
 				6B054F361D21B4EF003A62DC /* TimerLabel.swift */,
 			);
 			path = ShapeChooser;
@@ -186,9 +195,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B054F391D22070C003A62DC /* background.mp3 in Resources */,
 				6BFEAFEC1D1C912700BF9BD1 /* LaunchScreen.storyboard in Resources */,
+				6B054F3B1D221427003A62DC /* success.mp3 in Resources */,
 				6BFEAFE91D1C912700BF9BD1 /* Assets.xcassets in Resources */,
 				6BFEAFE71D1C912700BF9BD1 /* Main.storyboard in Resources */,
+				6B054F3D1D2226C1003A62DC /* miss.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
