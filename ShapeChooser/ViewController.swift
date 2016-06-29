@@ -20,10 +20,7 @@ class ViewController: UIViewController {
     @IBOutlet var heart1: UIImageView!
     @IBOutlet var heart2: UIImageView!
     
-    let initialLives = 3
-    var remainingLives = 0
-    let initialScore = 0
-    var score = 0
+    let gameScore = ShapeChooserScore()
     var musicPlayer: AVAudioPlayer!
     var successPLayer: AVAudioPlayer!
     var missPlayer: AVAudioPlayer!
@@ -55,8 +52,6 @@ class ViewController: UIViewController {
         let imagesDictionary = [SQUARE_BASE_NAME: UIImage(named: SQUARE_BASE_NAME + "0.png" )!, HEX_BASE_NAME: UIImage(named: HEX_BASE_NAME + "0.png" )!, TRIANGLE_BASE_NAME: UIImage(named: TRIANGLE_BASE_NAME + "0.png" )!]
         shapeImageCatcher.images = imagesDictionary
         
-        
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.shapeDropped(_:)),name: DragImage.Events.onTargetDrop, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.timerEnded(_:)), name: TimerLabel.Events.onTimerFinish, object: nil)
         
@@ -65,16 +60,14 @@ class ViewController: UIViewController {
         loadAnimationImageView(squareImageView, baseUIImageName: SQUARE_BASE_NAME, imageCount: SQUARE_IMAGE_COUNT)
         loadAnimationImageView(triangleImageView, baseUIImageName: TRIANGLE_BASE_NAME, imageCount: TRIANGLE_IMAGE_COUNT)
         
-        
         startGame()
     }
     
     
     func startGame(){
         playAudio(musicPlayer)
-        remainingLives = initialLives
-        score = initialScore
-        scoreLabel.text = "\(score)"
+        gameScore.restartGame()
+        scoreLabel.text = "\(gameScore.score)"
         shapeImageCatcher.changeRandomImage()
         heart0.alpha = OPAQUE
         heart1.alpha = OPAQUE
@@ -86,18 +79,18 @@ class ViewController: UIViewController {
     func getHighScore() -> Int{
         let defaults = NSUserDefaults.standardUserDefaults()
         let highScore = defaults.integerForKey(HIGH_SCORE_DEFAULT)
-        if highScore > score{
+        if highScore > gameScore.score{
             return highScore
         }else{
-            defaults.setInteger(score, forKey: HIGH_SCORE_DEFAULT)
-            return score
+            defaults.setInteger(gameScore.score, forKey: HIGH_SCORE_DEFAULT)
+            return gameScore.score
         }
     }
     
     func endGame(){
         musicPlayer.stop()
         
-        let endGameAlert = UIAlertController(title: END_GAME_TITLE, message: "Score: \(score)\r\nHigh Score: \(getHighScore())", preferredStyle: UIAlertControllerStyle.Alert)
+        let endGameAlert = UIAlertController(title: END_GAME_TITLE, message: "Score: \(gameScore.score)\r\nHigh Score: \(getHighScore())", preferredStyle: UIAlertControllerStyle.Alert)
         endGameAlert.addAction(UIAlertAction(title: RESTART_GAME, style: .Default, handler: {(action: UIAlertAction!) in
            self.startGame()
         }))
@@ -107,7 +100,7 @@ class ViewController: UIViewController {
     
     func substractLife(){
         playAudio(missPlayer)
-        remainingLives -= 1
+        let remainingLives = gameScore.substractLife()
         switch remainingLives {
         case 0:
             heart0.alpha = DIM_ALPHA
@@ -126,10 +119,9 @@ class ViewController: UIViewController {
     }
     
     func timerEnded(notif: NSNotification){
-        if remainingLives > 0{
+        if gameScore.remainingLives > 0{
             substractLife()    
         }
-        
     }
     
     func shapeDropped(notif: NSNotification){
@@ -143,17 +135,15 @@ class ViewController: UIViewController {
                 evalShapeDrop(shapeImageCatcher.keyIsCurrent(TRIANGLE_BASE_NAME))
             }
         }
-        
     }
     
     func evalShapeDrop(dropSuccess: Bool){
         if dropSuccess{
             playAudio(successPLayer)
             successPLayer.playing
-            score += 1
-            scoreLabel.text = "\(score)"
+            gameScore.addToScore()
+            scoreLabel.text = "\(gameScore.score)"
             timerLabel.restartTimer()
-
         }else{
             substractLife()
         }
